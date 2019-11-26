@@ -1,0 +1,109 @@
+<section class="content">
+  <section class="invoice">
+
+        <form>
+          <div class="row">
+            <div class="col-xs-12">
+              <h2 class="page-header">
+                <i class="fa fa-cutlery"></i> Informe a sua refeição
+              </h2>
+            </div>
+          </div>                
+
+          <div class="row invoice-info">
+            <div class="col-xs-12">
+              <p class="lead">Monte seu prato:</p>
+            </div>
+            <div class="col-sm-6 col-xs-12">
+              <div class="form-group">
+                <select class="form-control" name="alimentoSelected" [(ngModel)]="alimentoSelected">
+                    <option value="" selected disabled>Informe o peso</option>
+                    <option *ngFor="let a of alimentos" [value]="a.id">{{a.nome}}</option>
+                  </select>
+              </div>
+            </div>
+            <div class="col-sm-2 col-xs-6">
+            <div class="form-group">
+              <select class="form-control" name="peso" [(ngModel)]="peso">
+                <option value="" selected disabled>Informe o peso</option>
+                <option>100</option>
+                <option>200</option>
+                <option>300</option>
+                <option>400</option>
+                <option>500</option>
+                <option>600</option>
+                <option>700</option>
+              </select>
+            </div>
+          </div>
+            <div class="col-sm-2 col-xs-6">
+             <a href="#" class="btn btn-default pull-right" (click)="adicionarAoPrato()"><i class="fa fa-user-md"></i> Adicione no seu prato
+                </a>
+             
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- /.row -->
+
+          <!-- Table row -->
+          <div class="row">
+            <div class="col-xs-12">
+              <p class="lead">Itens do Prato:</p>
+            </div>
+            <div class="col-xs-12 table-responsive">
+
+              <table class="table table-striped">
+                <thead>
+                <tr>
+                  <th class="text-center">Alimento</th>
+                  <th class="text-center">Peso</th>
+                  <th class="text-center">calorias(100 gramas)</th>
+                  <th class="text-right"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let p of comidas">
+                  <td class="text-center">{{p.alimento.nome}}</td>
+                  <td class="text-center">{{p.peso}}</td>
+                  <td class="text-center">{{p.alimento.caloria}}</td>
+                  <td class="text-right">
+                    <a class="btn btn-sm danger" (click)="remover(p)"><i class="fa fa-remove"></i></a>
+                  </td>
+                </tr>
+          
+                </tbody>
+              </table>
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- /.row -->
+
+        </form>
+
+        <div class="row">
+          <div class="col-xs-12">
+            <a href="#" class="btn btn-success pull-right" (click)=enviarComida()><i class="fa fa-user-md"></i> Envie seu prato
+            </a>
+          </div>
+        </div>
+
+    </section>
+</section>
+<!--MODAL-->
+<ng-template #content let-modal>
+<div id="modal-success" class="modal modal-message modal-success fade" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <i class="glyphicon glyphicon-check"></i>
+            </div>
+            <div class="modal-title">Success</div>
+            <div class="modal-body">You have done great!</div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal">OK</button>
+            </div>
+        </div> <!-- / .modal-content -->
+    </div> <!-- / .modal-dialog -->
+</div>
+</ng-template>
+<!-- FIM DO CONTEUDO-->
